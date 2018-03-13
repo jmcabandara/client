@@ -1343,3 +1343,9 @@ func GetPlatformString() string {
 	}
 	return runtime.GOOS
 }
+
+func (e *Env) AllowPTrace() bool {
+	return e.GetBool(false,
+		func() (bool, bool) { return e.getEnvBool("KEYBASE_ALLOW_PTRACE") },
+	)
+}
